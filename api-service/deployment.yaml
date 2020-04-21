@@ -26,6 +26,26 @@ spec:
             - name: secrets
               mountPath: /usr/src/app/.env.secrets
               subPath: .env.secrets
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /status
+              port: 4000
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 15
+            successThreshold: 1
+            timeoutSeconds: 10
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /status
+              port: 4000
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 15
+            successThreshold: 1
+            timeoutSeconds: 10
       volumes:
         - name: env
           configMap:
