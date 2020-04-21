@@ -1,0 +1,19 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: api-service-tls
+  namespace: default
+spec:
+  secretName: api-service-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: api.teleport.so
+  dnsNames:
+    - api.teleport.so
+  acme:
+    config:
+      - http01:
+          ingress: api-service-ingress
+        domains:
+          - api.teleport.so
