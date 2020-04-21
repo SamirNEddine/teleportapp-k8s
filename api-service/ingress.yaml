@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: api-service-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  labels:
+    type: api-service
+spec:
+  tls:
+  - hosts:
+    - api.teleport.so
+    secretName: api-service-tls
+  rules:
+  - host: api.teleport.so
+    http:
+      paths:
+      - path: /stable(/|$)(.*)
+        backend:
+          serviceName: api-service
+          servicePort: 80

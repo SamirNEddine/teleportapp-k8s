@@ -1,0 +1,23 @@
+#Main Server
+MAIN_SERVER_PORT=4000
+
+#CORS
+CORS_NO_ORIGIN=1
+
+#App Access
+TEMP_CODE_VALIDTY_IN_SECONDS=1800
+
+#JWT Access Token
+JWT_ACCESS_TOKEN_EXPIRATION=24h
+
+#JWT Refresh Token
+JWT_REFRESH_TOKEN_EXPIRATION=48h
+
+#redis
+REDIS_PORT=6379
+
+#Slack
+SLACK_API_BASE_URL=https://slack.com/api
+
+#Context service
+CONTEXT_SERVICE_API_URL=http://context:4001/api

@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-service
+  labels:
+    app: api-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: api-service
+  template:
+    metadata:
+      labels:
+        app: api-service
+    spec:
+      containers:
+        - name: api-service
+          image: eu.gcr.io/teleport-274815/api-service:latest
+          ports:
+            - containerPort: 4000
+          volumeMounts:
+            - name: env
+              mountPath: /usr/src/app/.env
+              subPath: .env
+            - name: secrets
+              mountPath: /usr/src/app/.env.secrets
+              subPath: .env.secrets
+      volumes:
+        - name: env
+          configMap:
+            name: api-service-configmap
+            items:
+              - key: env
+                path: .env
+        - name: secrets
+          secret:
+            secretName: api-service-secrets
+            items:
+              - key: env-secrets
+                path: .env.secrets
+      nodeSelector:
+        cloud.google.com/gke-nodepool: regular-pool
