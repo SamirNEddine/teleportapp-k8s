@@ -20,4 +20,4 @@ REDIS_PORT=6379
 SLACK_API_BASE_URL=https://slack.com/api
 
 #Context service
-CONTEXT_SERVICE_API_URL=http://context:4001/api
+CONTEXT_SERVICE_API_URL=http://context-service/api

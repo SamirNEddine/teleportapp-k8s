@@ -1,0 +1,8 @@
+#Main Server
+MAIN_SERVER_PORT=4000
+
+#Sync Cron Job
+CALENDAR_SYNC_CRON_JOB_TIME_IN_MINUTES=15
+
+#Slack
+SLACK_API_BASE_URL=https://slack.com/api

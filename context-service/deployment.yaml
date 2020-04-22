@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-service
+  name: context-service
   labels:
-    app: api-service
+    app: context-service
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: api-service
+      app: context-service
   template:
     metadata:
       labels:
-        app: api-service
+        app: context-service
     spec:
       containers:
-        - name: api-service
-          image: eu.gcr.io/teleport-274815/api-service:0.1
+        - name: context-service
+          image: eu.gcr.io/teleport-274815/context-service:latest
           ports:
             - containerPort: 4000
           volumeMounts:
@@ -49,15 +49,15 @@ spec:
       volumes:
         - name: env
           configMap:
-            name: api-service-configmap
+            name: context-service-configmap
             items:
               - key: env
                 path: .env
         - name: secrets
           secret:
-            secretName: api-service-secrets
+            secretName: context-service-secrets
             items:
               - key: env-secrets
                 path: .env.secrets
       nodeSelector:
-        cloud.google.com/gke-nodepool: regular-pool
+        cloud.google.com/gke-nodepool: cpu-pool

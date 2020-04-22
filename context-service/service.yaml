@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: context-service
+  labels:
+    type: context-service
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 4000
+  selector:
+    app: context-service
