@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: api-service
-          image: eu.gcr.io/teleport-274815/api-service:0.9.3
+          image: eu.gcr.io/teleport-274815/api-service:0.9.4
           ports:
             - containerPort: 4000
           volumeMounts:
