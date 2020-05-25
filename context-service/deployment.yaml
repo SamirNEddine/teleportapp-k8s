@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: context-service
-          image: eu.gcr.io/teleport-274815/context-service:0.9.2
+          image: eu.gcr.io/teleport-274815/context-service:0.9.3
           ports:
             - containerPort: 4000
           volumeMounts:
